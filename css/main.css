@@ -50,15 +50,15 @@ span.intable {
 }
 
 span.intable:hover {
-    color: #3498db;
+    color: #fc5d74;
 }
 
 tr:hover span.intable {
-    color: #3498db;
+    color: #fc5d74;
 }
 
 a {
-    color: #3498db;
+    color: #fc5d74;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -78,11 +78,11 @@ a.intable {
 }
 
 a.intable:hover {
-    color: #3498db;
+    color: #fc5d74;
 }
 
 tr:hover a.intable { 
-    color: #3498db;
+    color: #fc5d74;
 }
 
 a:hover,
@@ -111,7 +111,7 @@ a:after {
 }
 
 .navbar-default {
-	background-color: #3498db;
+	background-color: #fc5d74;
 	border-color: transparent;
 }
 
@@ -139,12 +139,12 @@ a:after {
 
 i {
 	margin: 8px;
-	color: #3498db; 
+	color: #fc5d74; 
 }
 
 /* HeaderWrap */
 #headerwrap {
-	background-color: #3498db;
+	background-color: #fc5d74;
 	margin-top: -20px;
 	padding-top: 200px;
 	background-attachment: relative;
@@ -188,7 +188,7 @@ i {
 .table-hover > tbody > tr:hover > td >,
 .table-hover > tbody > tr:hover > th {
   background-color: white;
-  color: #3498db;
+  color: #fc5d74;
 }
 
 .table > thead > tr > th,
@@ -247,7 +247,7 @@ i {
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
   background-color: white;
-  color: #3498db;
+  color: #fc5d74;
 }
 
 .table > thead > tr > .active,
@@ -260,7 +260,7 @@ i {
 .table > tbody > .active > th,
 .table > tfoot > .active > th {
   background-color: white;
-  color: #3498db;
+  color: #fc5d74;
 
 }
 

@@ -26,7 +26,7 @@
   
   <style>
   #headerwrap{
-    background-image: url("img/lake.jpg");
+    background-color: #ffd1de;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -77,7 +77,7 @@
 
          		<ul class="nav navbar-nav navbar-right">
 
-            		<li><a href="login.php"><h4 style="color:white">Already a member?</h4></a></li>
+            		<li><a href="login.php"><h4 style="color:#ffd1de">Already a member?</h4></a></li>
 
          		</ul>
 
@@ -94,13 +94,14 @@
 
 			<div class="row">
 
-				<div class="col-lg-6 col-lg-offset-6">
+				<div class="col-lg-6 col-lg-offset-3">
 
 					<h1>Quick, convenient car share service.</h1>
+					<h1 style="color:#041530">Rent a car with us!</h1>
 
 					<form action="signup.php" method="GET" class="form-inline" role="form">
 
-						<div class="form-group" style="margin-left:15%">
+						<div class="form-group">
 
 					 		<input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="youremail@address.ca">
 

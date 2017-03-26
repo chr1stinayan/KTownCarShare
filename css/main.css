@@ -1,9 +1,9 @@
 body {
-  background-color: #f2f2f2;
+  background-color: #041530;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 16px;
-    color: #555;
+    color: white;
 
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
@@ -18,18 +18,19 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-size: 40px;
+    color: #ffd1de;
 }
 h2 {
-    color: white;
+    color: #ffd1de;
 }
 
 h3 {
-	color: #95a5a6;
+	color: #ffd1de;
 	font-weight: 400;
 }
 
 h4 {
-	color: #95a5a6;
+	color: #ffd1de;
 	font-weight: 400;
 	font-size: 20px;
 }
@@ -50,15 +51,15 @@ span.intable {
 }
 
 span.intable:hover {
-    color: #fc5d74;
+    color: #ffd1de;
 }
 
 tr:hover span.intable {
-    color: #fc5d74;
+    color: #ffd1de;
 }
 
 a {
-    color: #fc5d74;
+    color: #ffd1de;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -78,11 +79,11 @@ a.intable {
 }
 
 a.intable:hover {
-    color: #fc5d74;
+    color: #ffd1de;
 }
 
 tr:hover a.intable { 
-    color: #fc5d74;
+    color: #ffd1de;
 }
 
 a:hover,
@@ -111,17 +112,17 @@ a:after {
 }
 
 .navbar-default {
-	background-color: #fc5d74;
+	background-color: #041530;
 	border-color: transparent;
 }
 
 .navbar-default .navbar-brand {
-	color: white;
+	color: #ffd1de;
     font-size: 200%
 }
 
 .navbar-default .navbar-nav > li > a {
-	color: white;
+	color: #ffd1de;
 }
 
 /* Helpers */
@@ -139,12 +140,12 @@ a:after {
 
 i {
 	margin: 8px;
-	color: #fc5d74; 
+	color: #ffd1de; 
 }
 
 /* HeaderWrap */
 #headerwrap {
-	background-color: #fc5d74;
+	background-color: #ffd1de;
 	margin-top: -20px;
 	padding-top: 200px;
 	background-attachment: relative;
@@ -188,7 +189,7 @@ i {
 .table-hover > tbody > tr:hover > td >,
 .table-hover > tbody > tr:hover > th {
   background-color: white;
-  color: #fc5d74;
+  color: #ffd1de;
 }
 
 .table > thead > tr > th,
@@ -247,7 +248,7 @@ i {
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
   background-color: white;
-  color: #fc5d74;
+  color: #ffd1de;
 }
 
 .table > thead > tr > .active,
@@ -260,7 +261,7 @@ i {
 .table > tbody > .active > th,
 .table > tfoot > .active > th {
   background-color: white;
-  color: #fc5d74;
+  color: #ffd1de;
 
 }
 

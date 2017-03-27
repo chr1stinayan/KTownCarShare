@@ -36,7 +36,7 @@ else {
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="img/favicon.png">
-		<title>QThrive - Log In</title>
+		<title>K - Town Car Share: Log In</title>
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
@@ -50,7 +50,7 @@ else {
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		         	</button>
-	         		<a class="navbar-brand" href="index.php"> <img src="img/QThrive.png" height="50"> <b>QThrive</b> </a>
+	         		<a class="navbar-brand" href="index.php"> <img src="img/logo v1.png" height="50"> <b>K-Town Car Share</b> </a>
 	       		</div>
 				<div class="navbar-collapse collapse">
 	         		<ul class="nav navbar-nav navbar-right">
@@ -72,7 +72,7 @@ else {
 						    	<input style="width: 100%;" name="Password" type="password" class="form-control" id="Password" placeholder="Password">
 						 	</div>
 						 	<div style="text-align: center">
-								<button type="submit" class="btn btn-default" name="signin">Sign In</button>
+								<button type="submit" class="btn btn-warning btn-lg", name="signin">Sign In</button>
 							</div>
 						</form>
 						<?php
@@ -86,7 +86,7 @@ else {
 		</div>
 		<div class="container">
 			<hr>
-			<p class="centered">Created by Ben, Sean, Vinyas &amp; Vinith for QHacks 2017.</p>
+			<p class="centered">CISC 332 Final Project created by Christina Yan &amp; Vinith Suriyakumar.</p>
 		</div>
 		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	    <script src="js/bootstrap.min.js"></script>

@@ -100,7 +100,7 @@ else {
 							<div class="row" style="padding-bottom: 15px;">
 								<div class="form-group">
 									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-3">
-										<select style="width: 100%;" type="text" class="form-control" name="Membership Type" id="Membership Type">
+										<select style="width: 200%;" type="text" class="form-control" name="Membership Type" id="Membership Type">
 												<option value="" selected disabled>Membership Type</option>
 												<option>Basic</option>
 												<option>Bronze</option>

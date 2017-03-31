@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="author" content="VMS&amp;SN&amp;BB&amp;VH">
+    <meta name="author" content="CY&amp;VMS">
 
     <link rel="shortcut icon" href="img/favicon.png">
 
@@ -96,7 +96,7 @@
 
 				<div class="col-lg-6 col-lg-offset-3">
 
-					<h1>Quick, convenient car share service.</h1>
+					<h1 style="color:#041530">Quick, convenient car share service.</h1>
 					<h1 style="color:#041530">Rent a car with us!</h1>
 
 					<form action="signup.php" method="GET" class="form-inline" role="form">

@@ -1,28 +1,28 @@
 <?php
 
 if (!isset($_POST['sign_up'])){
-	if(isset($_SESSION['Member_ID'])) {
+	if(isset($_SESSION['memberNum'])) {
 		session_start();
-		header("Location: chat.php");
+		header("Location: profile.php");
 		die();
 	}
 }
 else {
 		include_once 'config/connection.php';
-			$query = "SELECT Email FROM Member WHERE Email=?";
+			$query = "SELECT email FROM KTCSMembers WHERE email=?";
 			if($stmt = $con->prepare($query)) {
 				$stmt->bind_Param("s", $_POST['Email']);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$num = $result->num_rows;
 		if($num===0) {
-					$query = "INSERT INTO Member (F_Name,L_Name,Email,Phone_No,Grad_Year,Faculty,Degree_Type,Password)
-					VALUES ('$_POST[FirstName]','$_POST[LastName]','$_POST[Email]','$_POST[Phone]','$_POST[Year]','$_POST[Faculty]','$_POST[Degree]','$_POST[Password]')";
+					$query = "INSERT INTO KTCSMembers (memberName,password,address,email,licenseNum,membershipFee,creditCardNumber)
+					VALUES ('$_POST[MemberName]','$_POST[Password]','$_POST[Address]','$_POST[Email]','$_POST[LicenseNum]','$_POST[MembershipFee]','$_POST[CreditCardNumber]')";
 					mysqli_query($con,$query);
-					$query = "SELECT Member_ID FROM Member WHERE Email = '$_POST[Email]'";
+					$query = "SELECT memberNum FROM KTCSMembers WHERE Email = '$_POST[Email]'";
 					$myrow = mysqli_query($con,$query)->fetch_assoc();
-			$_SESSION['Member_ID'] = $myrow['Member_ID'];
-			header("Location:chat.php");
+			$_SESSION['memberNum'] = $myrow['memberNum'];
+			header("Location:profile.php");
 			exit();
 		} else {
 			error_log("Email already in use");
@@ -70,15 +70,13 @@ else {
 					<div class="col-lg-6 col-lg-offset-3">
 						<h1 style="text-align: center">Welcome aboard.</h1>
 					</div>
+				</div>
 					<div class="col-lg-6 col-lg-offset-3">
 						<form name='signup' id='signup' action='signup.php' method='POST'>
 							<div class="row" style="padding-bottom: 15px;">
 								<div class="form-group">
-									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
-										<input style="width: 100%;" type="text" class="form-control" name="FirstName" id="FirstName" placeholder="First Name">
-									</div>
-									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
-										<input style="width: 100%;" type="text" class="form-control" name="LastName" id="LastName" placeholder="Last Name">
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-12">
+										<input style="width: 100%;" type="text" class="form-control" name="MemberName" id="MemberName" placeholder="Full Name">
 									</div>
 								</div>
 							</div>
@@ -93,27 +91,36 @@ else {
 								</script>
 						  	</div>
 							<div class="form-group">
-								<input style="width: 100%;" type="text" class="form-control" name="Phone" id="Phone" placeholder="Phone #">
-								<input style="width: 100%;" type="text" class="form-control" name="License Number" id="License Number" placeholder="License Number">
-									
+								<div class="row" style="padding-bottom: 15px; padding-left: 15px; padding-right: 15px;">
+									<input style="width: 100%;" type="text" class="form-control" name="Phone" id="Phone" placeholder="Phone #">
+								</div>
+								<div class="row" style="padding-bottom: 15px; padding-left: 15px; padding-right: 15px;">
+									<input style="width: 100%;" type="text" class="form-control" name="Address" id="Address" placeholder="Home Address">
+								</div>
+								<div class="row" style="padding-left: 15px; padding-right: 15px;">
+									<input style="width: 100%;" type="text" class="form-control" name="LicenseNum" id="LicenseNum" placeholder="License Number">
+								</div>	
 						 	</div>
 							<div class="row" style="padding-bottom: 15px;">
 								<div class="form-group">
-									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-3">
-										<select style="width: 200%;" type="text" class="form-control" name="Membership Type" id="Membership Type">
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-12">
+										<select style="width: 100%;" type="text" class="form-control" name="MembershipFee" id="MembershipFee">
 												<option value="" selected disabled>Membership Type</option>
-												<option>Basic</option>
-												<option>Bronze</option>
-												<option>Silver</option>
-												<option>Gold</option>
+												<option value=0.00>Basic</option>
+												<option value=100.00>Bronze</option>
+												<option value=250.00>Silver</option>
+												<option value=500.00>Gold</option>
 										</select>
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<input style="width: 100%;" type="password" class="form-control" name="CreditCardNumber" id="CreditCardNumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+						 	</div>
 						 	<div class="form-group">
 								<input style="width: 100%;" type="password" class="form-control" name="Password" id="Password" placeholder="Create Password">
 						 	</div>
-						 	<div style="text-align: center">
+						 	<div style="text-align: center; padding-bottom: 15px;">
 								<button type="submit" name='sign_up' class="btn btn-default">Sign Up</button>
 							</div>
 						</form>

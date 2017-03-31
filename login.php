@@ -1,14 +1,14 @@
 <?php
 if(!isset($_POST['signin'])) {
-	if(isset($_SESSION['Member_ID'])) {
+	if(isset($_SESSION['memberNum'])) {
 		session_start();
-		header("Location: chat.php");
+		header("Location: profile.php");
 		die();
 	}
 }
 else {
 		include_once 'config/connection.php';
-			$query = "SELECT Member_ID,Email,Password FROM Member WHERE Email=? AND Password=?";
+			$query = "SELECT memberNum, memberName, password, email FROM KTCSMembers WHERE email=? AND password=?";
 			if($stmt = $con->prepare($query)) {
 				$stmt->bind_Param("ss", $_POST['Email'], $_POST['Password']);
 		$stmt->execute();
@@ -16,8 +16,8 @@ else {
 		$num = $result->num_rows;
 		if($num>0){
 			$myrow = $result->fetch_assoc();
-			$_SESSION['Member_ID'] = $myrow['Member_ID'];
-			header("Location:chat.php");
+			$_SESSION['memberNum'] = $myrow['memberNum'];
+			header("Location: profile.php");
 			exit();
 		} else {
 			error_log("Failed to login");

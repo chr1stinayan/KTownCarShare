@@ -1,37 +1,3 @@
-<?php
-	if (!isset($_POST['sign_up'])){
-		if(isset($_SESSION['Member_ID'])) {
-			session_start();
-			header("Location: profile.php");
-			die();
-		}
-	}
-	else {
-			include_once 'config/connection.php';
-				$query = "SELECT Email FROM Member WHERE Email=?";
-				if($stmt = $con->prepare($query)) {
-					$stmt->bind_Param("s", $_POST['Email']);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			$num = $result->num_rows;
-			if($num===0) {
-						$query = "INSERT INTO Member (F_Name,L_Name,Email,Phone_No,Grad_Year,Faculty,Degree_Type,Password)
-						VALUES ('$_POST[FirstName]','$_POST[LastName]','$_POST[Email]','$_POST[Phone]','$_POST[Year]','$_POST[Faculty]','$_POST[Degree]','$_POST[Password]')";
-						mysqli_query($con,$query);
-						$query = "SELECT Member_ID FROM Member WHERE Email = '$_POST[Email]'";
-						$myrow = mysqli_query($con,$query)->fetch_assoc();
-				$_SESSION['Member_ID'] = $myrow['Member_ID'];
-				header("Location:chat.php");
-				exit();
-			} else {
-				error_log("Email already in use");
-				header("Location:signup.php?msg=bademail");
-			}
-		} else {
-			echo "failed to prepare the SQL";
-		}
-	}
-?>
 <!DOCTYPE html>
 var date = ""
 <html lang="en">
@@ -78,7 +44,16 @@ var date = ""
 				$("#rTime").timepicker();
 		   });
         </script>
+		<script>
+			$(function myFunction() {
+				var no = document.getElementById("Lot List");
+				var lot = no.options[no.selectedIndex].text;
+				document.getElementById("lotSel").innerHTML = lot;
 				
+								
+			});
+		</script>
+	
     </head>
 	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
@@ -112,18 +87,20 @@ var date = ""
 				<div class="form-group">
 					<div class="col-lg-6 col-lg-offset-0">
 						<select style="width: 100%;" type="text" class="form-control" name="Membership Type" id="Membership Type">
-								<option value="" selected disabled>Select car tier</option>
-								<option>Basic</option>
-								<option>Bronze</option>
-								<option>Silver</option>
-								<option>Gold</option>
+								<option selected disabled>Select car tier</option>
+								<option value="Basic">Basic</option>
+								<option value="Bronze">Bronze</option>
+								<option value="Silver">Silver</option>
+								<option value="Gold">Gold</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-lg-6 col-lg-offset-0">
-						<select style="width: 100%;" type="text" class="form-control" name="Membership Type" id="Membership Type">
-								<option value="" selected disabled>Pick up location</option>
+						<select style="width: 100%;" type="text" class="form-control" name="Lot List" id="Lot List">
+							<option selected disabled>Pick up location</option>
+							<option value = 1>West</option>
+							<option value = 2>Main</option>
 						</select>
 					</div>
 				</div>
@@ -169,6 +146,60 @@ var date = ""
 						<h2 style="color: #041530">Available Cars<h2>
 					</div>
 				</div>
+				<div class="form-group">
+					<div class="col-lg-6 col-lg-offset-0">
+						<button type="button" class="btn btn-warning btn-lg "data-toggle="modal" data-target="#myModal">Book now</button>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<!-- Modal content -->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Confirm Booking Details</h4>
+							</div>
+							<div class="modal-body" onload="myFunction()">
+								<div class="row">
+									<p style="color: #041530">Car: </p>
+									<p id="carSel" style="color: #041530"></p>
+								</div>
+								<div class="row">
+									<p style="color: #041530">Pick up location: </p>
+									<p id="lotSel" style="color: #041530"></p>
+								</div>
+								<div class="row">
+									<p style="color: #041530">Pick up date: </p>
+									<p id="pDateSel" style="color: #041530"></p>
+								</div>
+								<div class="row">
+									<p style="color: #041530">Pick up time: </p>
+									<p id="pTimeSel" style="color: #041530"></p>
+								</div>
+								<div class="row">
+									<p style="color: #041530">Return date: </p>
+									<p id="rDateSel" style="color: #041530"></p>
+								</div>
+								<div class="row">
+									<p style="color: #041530">Return time: </p>
+									<p id="rTimeSel" style="color: #041530"></p>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<div class="btn-group">								
+									<form action='/confirmation.php'>
+										<button type="Submit" class="btn btn-primary">Confirm booking</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									</form>			
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				
+				
 			</div>
 		</div>
 		<div class="container">

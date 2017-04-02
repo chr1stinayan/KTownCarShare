@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_POST['sign_up'])){
 	if(isset($_SESSION['Member_ID'])) {
 		session_start();
@@ -33,6 +32,7 @@ else {
 	}
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -61,33 +61,28 @@ else {
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="cars.php">Cars</a></li>
 						<li><a href="lots.php">Pickup & Dropoff Lots</a></li>
-						<li><a href="currentRes.php">My Reservations</a></li>
-						<li><a href="newRes.php">New Booking</a></li>
-						<li><a href="editprofile.php">My Profile</a></li>
-						<li><a href="signout.php">Sign Out</a></li>						
+						<li><a href="newBooking.php">New Booking</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown">Member Profile
+							<ul class="dropdown-menu">
+							<li><a href="profile.php">My Profile</a></li>
+							<li><a href="editProfile.php">Edit Profile</a></li>
+							</ul>
+						</li>
+						<li><a href="signOut.php">Sign Out</a></li>						
 					</ul>
 					</div>
 				</div>
 			</div>
-		<div id="headerwrap" style="padding-top: 50px; min-height: 590px;">
+		<div id="headerwrap" style="padding-top: 150px; min-height: 590px;">
 			<div class="container">
-				<div class="form-group">
 					<div class="col-lg-6 col-lg-offset-3">
-						<h1 style="text-align: center">Welcome, ___ <h1>
+						<h1 style="color: #041530">Welcome, ___ <h1>
 					</div>
+				<div class="form-group">
 					<div class="col-lg-6 col-lg-offset-0">
-						<h1 style="text-align: left">Upcoming reservations<h1>
-					</div>
-				</div>
-				<div class="form-group>
-					<div style="text-align: center">
-						<button type="submit" name='viewCurrent' class="btn btn-default">View Reservations</button>
-					</div>
-					<div class="col-lg-6 col-lg-offset-0">
-						<h1 style="text-align: left">Rental History<h1>
-					</div>
-					<div style="text-align: center">
-						<button type="submit" name='viewPrev' class="btn btn-default">View Previous Trips</button>
+						<h1 style="color: #041530">Upcoming reservations<h1>
+						<h1 style="color: #041530">Rental History<h1>
 					</div>
 				</div>
 			</div>

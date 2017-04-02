@@ -1,9 +1,9 @@
 <?php
 // used to connect to the database
 $host = "localhost";
-$db_name = "QThrive";
-$username = "qthrive";
-$password = "qthrive17";
+$db_name = "KTownCarShareDB";
+$username = "cisc332";
+$password = "cisc3322017";
 try {
     $con = new mysqli($host,$username,$password,$db_name);
 }

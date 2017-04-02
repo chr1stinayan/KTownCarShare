@@ -44,16 +44,50 @@ var date = ""
 				</div> 
 			</div> 
 		  
-			<div id="headerwrap" style="padding-top: 150px; min-height: 590px;"> 
-				<div class="container"> 
+			<div id="headerwrap" style="padding-top: 150px; min-height: 590px;"> 					
 					<div class="form-group">
-						<div class="col-lg-6 col-lg-offset-0">
-							<h1 style="color: #041530"><u>Today's reservations<br></u><h1>
-							<h2 style="color: #041530"><u>Picking up today<br></u><h2>
-							<h2 style="color: #041530"><u>Returning today<br></u><h2>
+						<div class="col-lg-10 col-lg-offset-100">
+							<h1 style="color: #041530">Generate an invoice<br><h1>
+							<h2 style="color: #041530">Find a KTCS member<br><h2>
+							<div class="row" style="padding-bottom: 15px;">
+								<div class="form-group">
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
+										<input style="width: 100%;" type="text" class="form-control" name="FirstName" id="FirstName" placeholder="First Name">
+									</div>
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
+										<input style="width: 100%;" type="text" class="form-control" name="LastName" id="LastName" placeholder="Last Name">
+									</div>
+								</div>
+							</div>
+							<div class="row" style="padding-bottom: 15px;">
+								<div class="form-group">
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
+										<input style="width: 100%;" type="text" class="form-control" name="Email" id="Email" placeholder="Email Address">
+									</div>
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
+										<input style="width: 100%;" type="text" class="form-control" name="PhoneNo" id="PhoneNo" placeholder="Phone Number">
+									</div>
+								</div>
+							</div>
+							
+							<div class="row" style="padding-bottom: 15px;">
+								<div class="form-group">
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
+										<input style="width: 100%;" type="text" class="form-control" name="LicenseNo" id="LicenseNo" placeholder="License Number">
+									</div>
+									<div style='padding-right: 15px; padding-left: 15px;' class="col-md-6">
+										<input style="width: 100%;" type="text" class="form-control" name="MemberNo" id="MemberNo" placeholder="Member Number">
+									</div>
+								</div>
+							</div>
+							<div align="center">
+								<button  type="Submit" class="btn btn-warning">Search</button>
+							</div>
 						</div>
-					</div>					
-				</div>				
+					</div>				
+					
+				</div>
+				
 			</div>	
 			
 			<div class="container"> 

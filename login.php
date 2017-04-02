@@ -1,33 +1,3 @@
-<?php
-if(!isset($_POST['signin'])) {
-	if(isset($_SESSION['memberNum'])) {
-		session_start();
-		header("Location: profile.php");
-		die();
-	}
-}
-else {
-		include_once 'config/connection.php';
-			$query = "SELECT memberNum, memberName, password, email FROM KTCSMembers WHERE email=? AND password=?";
-			if($stmt = $con->prepare($query)) {
-				$stmt->bind_Param("ss", $_POST['Email'], $_POST['Password']);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$num = $result->num_rows;
-		if($num>0){
-			$myrow = $result->fetch_assoc();
-			$_SESSION['memberNum'] = $myrow['memberNum'];
-			header("Location: profile.php");
-			exit();
-		} else {
-			error_log("Failed to login");
-			header("location:login.php?msg=failed");
-		}
-	} else {
-		echo "Failed to prepare the SQL";
-	}
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -42,6 +12,44 @@ else {
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+	<?php
+		session_start();
+		if(isset($_GET['logout'])){
+			$_SESSION['memberNum'] = null;
+			session_destroy();
+		}
+		if(!isset($_POST['signin'])) {
+			if(isset($_SESSION['memberNum'])) {
+				session_start();
+				header("Location: profile.php");
+				die();
+			}
+		}
+		else {
+				include_once 'config/connection.php';
+			//Create a user session or resume an existing one
+			session_start();
+					$query = "SELECT memberNum, memberName, password, email FROM KTCSMembers WHERE email=? AND password=?";
+					if($stmt = $con->prepare($query)) {
+						$stmt->bind_Param("ss", $_POST['Email'], $_POST['Password']);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$num = $result->num_rows;
+				if($num>0){
+					$myrow = $result->fetch_assoc();
+					$_SESSION['memberNum'] = $myrow['memberNum'];
+					$_SESSION['memberName'] = $myrow['memberName'];
+					header("Location: profile.php");
+					exit();
+				} else {
+					error_log("Failed to login");
+					header("location:login.php?msg=failed");
+				}
+			} else {
+				echo "Failed to prepare the SQL";
+			}
+		}
+		?>
 	    <div class="navbar navbar-default navbar-fixed-top">
 	     	<div class="container">
 	        	<div class="navbar-header">

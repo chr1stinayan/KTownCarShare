@@ -38,7 +38,7 @@
 				if($num>0){
 					$myrow = $result->fetch_assoc();
 					$_SESSION['memberNum'] = $myrow['memberNum'];
-					$_SESSION['memberName'] = $myrow['memberName'];
+					$_SESSION['firstName'] = $myrow['firstName'];
 					header("Location: profile.php");
 					exit();
 				} else {

@@ -322,9 +322,7 @@
 					}]
 				];
 			}
-			else if (this.element.is('div')){  // inline datepicker
-				this.isInline = true;
-			}
+			
 			else {
 				this._events = [
 					[this.element, {

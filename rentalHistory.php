@@ -16,7 +16,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div id="headerwrap" style="padding-top: 150px; min-height: 590px;">
+	    <div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,7 +26,6 @@
 						</button>
 					<a class="navbar-brand" href="index.php"> <img src="img/logo v1.png" height="50"> <b>K-Town Car Share</b> </a>
 				</div>
-			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="cars.php">Cars</a></li>
@@ -49,13 +48,18 @@
 					<li><a href="signOut.php">Sign Out</a></li>						
 				</ul>
 			</div>
+			</div>
+			</div>
+			
+			<div id="headerwrap" style="padding-top: 50px; min-height: 590px">
+			<div class="container">
 			<div class="form-group">
 				<div class="col-lg-6 col-lg-offset-0">
 					<h1 style="color: #041530">Rental History<h1>
 						<?php
 							if (isset($_SESSION['memberNumber'])){
 								date_default_timezone_set('US/Eastern');
-								$rentalHistoryQueryResult = "SELECT DATEDIFF(DATE(dropOffDateTime), DATE(pickUpDateTime)) as length, (dropOffOdometer-pickUpOdometer) as distance, lotAddress, pickUpState, dropOffState FROM RentalHistory JOIN Reservation WHERE memberNumber='".$_SESSION['memberNumber']."' AND startDateTime < '".date('y:m:d h:i:s')."'";
+								$rentalHistoryQueryResult = "SELECT DISTINCT DATEDIFF(DATE(dropOffDateTime), DATE(pickUpDateTime)) as length, (dropOffOdometer-pickUpOdometer) as distance, lotAddress, pickUpState, dropOffState, VIN FROM (RentalHistory NATURAL JOIN Reservation) WHERE memberNumber='".$_SESSION['memberNumber']."' AND startDateTime < '".date('y:m:d h:i:s')."'";
 								$rentalHistoryQueryResult = mysqli_query($con,$rentalHistoryQueryResult);
 								if(!$rentalHistoryQueryResult){
 									printf("Error: %s\n", mysqli_error($con));
@@ -66,7 +70,7 @@
 								}
 								else {
 									echo "<table frame='void'>";
-									echo "<tr><th>Length of Rental</th><th>Parking Lot Location</th><th>Distance Travelled</th><th></th><th>Pickup State</th><th>Dropoff State</th></tr>";
+									echo "<tr><th>Length of Rental</th><th>Parking Lot Location</th><th>Distance Travelled</th><th>Pickup State</th><th>Dropoff State</th></tr>";
 
 									while($row = mysqli_fetch_array($rentalHistoryQueryResult)){
 										$length = $row['length'];
@@ -74,13 +78,19 @@
 										$distance = $row['distance'];
 										$pickupState = $row['pickUpState'];
 										$returnState = $row['dropOffState'];
+										$vin = $row['VIN'];
 										
 										echo "<tr>
-											<td>".$length."</td>
+											<td>".$length.' days'."</td>
 											<td>".$lot."</td>
 											<td>".$distance.' km'."</td>
 											<td>".$pickupState."</td>
 											<td>".$returnState."</td>
+											<td>
+												<form action='editComment.php?VIN=".$vin."' method=\"POST\">
+													<button type=\"submit\" class=\"btn btn-warning btn-lg\" style='width:100%; height:100%;' data-toggle=\"modal\" data-target=\"#myModal\"></button>													
+												</form>												
+											</td>
 										</tr>";
 									}
 								}
@@ -91,6 +101,7 @@
 						?>
 				</div>
 			</div>
+		  </div>
 		</div>
 	</body>
 </html>

@@ -40,9 +40,9 @@ var date = ""
 					</div> 
 					<div class="navbar-collapse collapse"> 
 						<ul class="nav navbar-nav navbar-right"> 
-							<li><a href="cars.php">Cars</a></li> 
-							<li><a href="lots.php">Pickup & Dropoff Lots</a></li> 
-							<li><a href="reservations.php">Reservations</a></li> 
+							<li><a href="adminCars.php">Cars</a></li> 
+							<li><a href="adminLots.php">Pickup & Dropoff Lots</a></li> 
+							<li><a href="adminReservations.php">Reservations</a></li> 
 							<li><a href="generateInvoice.php">Generate Invoice</a></li>  
 							<li><a href="editProfile.php">My Profile</a></li> 
 							<li><a href="signOut.php">Sign Out</a></li>             
@@ -91,16 +91,25 @@ var date = ""
 							<?php
 								include 'config/connection.php';
 								if(isset($_POST['5000club'])){
-									$today = date("Y-m-d H:i:s");
-									$todayReservationResult = "SELECT * FROM Reservation WHERE endDateTime='".$today."'";
-									$todayReservationResult = mysqli_query($con,$todayReservationResult);
-									if(!$todayReservationResult){
+									$fivek = date("Y-m-d H:i:s");
+									$fivek = "SELECT VIN, make, model, year, carOdometer-odometer as dist FROM car NATURAL JOIN maintenancehistory WHERE carOdometer - 5000 > odometer GROUP BY VIN ORDER BY dist";
+									$fivek = mysqli_query($con,$fivek);
+									if(!$fivek){
 										printf("Error: %s\n", mysqli_error($con));
    										exit();
 									}
-									while($reservation = mysqli_fetch_array($todayReservationResult)){
-										echo "<h2> Reservation Number:".$reservation['reservationNumber']."</h2>";
-									}
+									echo "<table frame='void'>";
+									echo "<tr><th>VIN</th><th>Make</th><th>Model</th><th>Year</th><th>Mileage since last maintainence</th></tr>";
+									while($row = mysqli_fetch_array($fivek)){									
+									echo "<tr>
+										<td>".$row['VIN']."</td>
+										<td>".$row['make']."</td>
+										<td>".$row['model']."</td>
+										<td>".$row['year']."</td>
+										<td>".$row['dist']."</td>
+									</tr>";
+								}
+								echo "</table>";
 								}
 							?>
 							<form name='highestRentedCar' id='highestRentedCar' action='adminLanding.php' method='POST'>
@@ -123,9 +132,9 @@ var date = ""
 									}
 								}
 							?>
-							<form name='lowestRentedCar' id='highestRentedCar' action='adminLanding.php' method='POST'>
+							<form name='lowestRentedCar' id='lowestRentedCar' action='adminLanding.php' method='POST'>
 						 	<div style="text-align: center">
-								<button type="submit" class="btn btn-warning btn-lg", name="highestRentedCar">Highest Rented Car</button>
+								<button type="submit" class="btn btn-warning btn-lg", name="lowestRentedCar">Lowest Rented Car</button>
 							</div>
 							</form>
 						</div>

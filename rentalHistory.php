@@ -78,7 +78,7 @@
 										$distance = $row['distance'];
 										$pickupState = $row['pickUpState'];
 										$returnState = $row['dropOffState'];
-										$vin = $row['VIN'];
+										$_SESSION['vin'] = $row['VIN'];
 										
 										echo "<tr>
 											<td>".$length.' days'."</td>
@@ -87,7 +87,7 @@
 											<td>".$pickupState."</td>
 											<td>".$returnState."</td>
 											<td>
-												<form action='editComment.php?VIN=".$vin."' method=\"POST\">
+												<form action='editComment.php?VIN=".$_SESSION['vin']."' method=\"POST\">
 													<button type=\"submit\" class=\"btn btn-warning btn-lg\" style='width:100%; height:100%;' data-toggle=\"modal\" data-target=\"#myModal\"></button>													
 												</form>												
 											</td>

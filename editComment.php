@@ -72,8 +72,7 @@
 									$insertNewComment = "INSERT INTO memberComments(VIN, memberNumber, commentText, commentDateTime, rating) VALUES('".$_SESSION['vin']."', '".$memberNum."', '".$_POST['userComment']."', '".date('y:m:d h:i:s')."', '".$_POST['rating']."')";
 									mysqli_query($con, $insertNewComment);
 									header('Location: confirmComment.php');
-								}
-								
+								}								
 							?>
 						</form>
 					</div>

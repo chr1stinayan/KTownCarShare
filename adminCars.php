@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
-			<meta name="author" content="VMS&amp;SN&amp;BB&amp;VH">
+			<meta name="author" content="VMS&CY">
 		<link rel="shortcut icon" href="img/logo v1.jpg">
-		<title>K-Town Car Share - Cars</title>
+		<title>K-Town Car Share - Admin Cars</title>
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
@@ -62,12 +62,13 @@
 					</div>
 					<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbasr-right" style="padding-top: 15px;">
-						<li><a href="cars.php">Cars</a></li>
-						<li><a href="lots.php">Pickup & Dropoff Lots</a></li>
-						<li><a href="currentRes.php">My Reservations</a></li>
-						<li><a href="newRes.php">New Booking</a></li>
-						<li><a href="editprofile.php">My Profile</a></li>
-						<li><a href="login.php?logout=1">Sign Out</a></li>						
+						<li><a href="cars.php">Cars</a></li> 
+						<li><a href="lots.php">Pickup & Dropoff Lots</a></li> 
+						<li><a href="reservations.php">Reservations</a></li> 
+						<li><a href="maintain.php">Maintainence</a></li> 
+						<li><a href="generateInvoice.php">Generate Invoice</a></li>  
+						<li><a href="editProfile.php">My Profile</a></li> 
+						<li><a href="signOut.php">Sign Out</a></li>  						
 					</ul>
 					</div>
 				</div>
@@ -79,8 +80,9 @@
 						<h1 style="text-align: center; color: #041530;"></h1>
 				</div>
 				<div class="row">
-					<div class="col-lg-4 col-lg-offset-4">
-						<h1 style="text-align:center">Search For Cars</h1>
+					
+					<div class="col-lg-5 col-lg-offset-4">
+						<h1 style="color: #041530">Add new car to rent</h1>
 						<form name='addCar' id='addCar' action='adminCars.php' method='POST'>
 						 	<div class="form-group">
 						    	<input style="width: 100%;" name="Make" type="text" class="form-control" id="Make" placeholder="Make">
@@ -121,7 +123,7 @@
 					</div>
 				</div>
                 <div class="form-group">
-                    <h1> Show Rental History For Car </h1>
+                    <h1 style="color: #041530" align="center"> Show Rental History For Car </h1>
 				</div>
                 <form name='chosenCar' id='chosenCar' action='adminCars.php' method='POST'>
                 <div class="form-group">
@@ -142,40 +144,59 @@
 								</select>
 				</div>
                 <div style="text-align: center">
-						<button type="submit" class="btn btn-warning btn-lg", name="chosenCar">Add Car</button>
+						<button type="submit" class="btn btn-warning btn-lg", name="chosenCar">Get Car History</button>
 				</div>
                 </form>
                 <?php 
-                    if(isset($_POST['chosenVIN'])){
+                    if(isset($_POST['chosenCar'])){
                         include 'config/connection.php';
-                        $rentalHistoryQueryResult = "SELECT DISTINCT DATEDIFF(DATE(dropOffDateTime), DATE(pickUpDateTime)) as length, (dropOffOdometer-pickUpOdometer) as distance, lotAddress, pickUpState, dropOffState, VIN FROM (RentalHistory NATURAL JOIN Reservation) WHERE VIN=".$_POST['chosenVIN']." AND startDateTime < '".date('y:m:d h:i:s')."'";
+                        $rentalHistoryQueryResult = "SELECT DISTINCT DATEDIFF(DATE(dropOffDateTime), DATE(pickUpDateTime)) as length, (dropOffOdometer-pickUpOdometer) as distance, lotAddress, pickUpState, dropOffState, VIN, reservationNumber FROM (RentalHistory NATURAL JOIN Reservation) WHERE VIN=".$_POST['chosenVIN']." AND startDateTime < '".date('y:m:d h:i:s')."'";
                         $rentalHistoryQueryResult = mysqli_query($con,$rentalHistoryQueryResult);
                         if(!$rentalHistoryQueryResult){
                             printf("Error: %s\n", mysqli_error($con));
    							exit();
                         }
-                        while($rentalHistory=mysqli_fetch_array($rentalHistoryQueryResult)){
-                            $length = $rentalHistory['length'];
-										$lot = $rentalHistory['lotAddress'];
-										$distance = $rentalHistory['distance'];
-										$pickupState = $rentalHistory['pickUpState'];
-										$returnState = $rentalHistory['dropOffState'];
-										
-										echo "<tr>
-											<td>".$length." days </td>
-											<td>".$lot."</td>
-											<td>".$distance." km </td>
-											<td>".$pickupState."</td>
-											<td>".$returnState."</td>
-										    </tr>";
-                        }
+						if(mysqli_num_rows($rentalHistoryQueryResult)==0){
+							echo "<br><h2 style='color: #041530' align='center'>No rental history to show.</h2>";
+						}
+						else {
+							$carNameQuery = "SELECT make, model, year FROM car WHERE VIN=".$_POST['chosenVIN']."";
+							$carNameQuery = mysqli_query($con, $carNameQuery);
+							if ($carNameQuery){
+								while($car=mysqli_fetch_array($carNameQuery)){
+								echo "<br><h2 style='color: #041530' align='center'>".$car['year']." ".$car['make']." ".$car['model']."</h2>";
+								echo "<form action='adminComment.php?reservationNumber=".$_SESSION['reservationNumber']."'VIN=".$_SESSION['VIN']."' method=\"POST\">
+										<button type=\"submit\" class=\"btn btn-warning btn-sm\";'>View User Comments</button>													
+									</form>	";
+								}
+							}
+							echo "<table style='color: #041530' align='center' frame='void'>";
+							echo "<tr><th>Length of Rental</th><th>Parking Lot Location</th><th>Distance Travelled</th><th>Pickup State</th><th>Dropoff State</th><th></th></tr>";
+							while($rentalHistory=mysqli_fetch_array($rentalHistoryQueryResult)){
+								$length = $rentalHistory['length'];
+								$lot = $rentalHistory['lotAddress'];
+								$distance = $rentalHistory['distance'];
+								$pickupState = $rentalHistory['pickUpState'];
+								$returnState = $rentalHistory['dropOffState'];
+								$_SESSION['VIN'] = $rentalHistory['VIN'];
+								$_SESSION['reservationNumber'] = $rentalHistory['reservationNumber'];
+								echo "<tr style='color: #041530' align='center'>
+									<td>".$length." day(s) </td>
+									<td>".$lot."</td>
+									<td>".$distance." km </td>
+									<td>".$pickupState."</td>
+									<td>".$returnState."</td>
+									</tr>";
+							}
+							echo "<br></table>";
+							}
                     }
                 ?>
 			</div>
 		</div>
 		<div class="container">
 			<hr>
-			<p class="centered">CISC 332 Final Project created by Christina Yan &amp; Vinith Suriyakumar.</p>
+			<p class="centered" style="color: #041530">CISC 332 Final Project created by Christina Yan &amp; Vinith Suriyakumar.</p>
 		</div>
 		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>

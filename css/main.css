@@ -1,0 +1,340 @@
+body {
+  background-color: #041530;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Titles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: #333;
+}
+
+h1 {
+    font-size: 40px;
+    color: #ffd1de;
+}
+h2 {
+    color: #ffd1de;
+}
+
+h3 {
+	color: #ffd1de;
+	font-weight: 400;
+}
+
+h4 {
+	color: #ffd1de;
+	font-weight: 400;
+	font-size: 20px;
+}
+
+/* Paragraph & Typographic */
+p {
+    line-height: 28px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.centered {
+    text-align: center;
+}
+
+span.intable {
+    color: white;
+}
+
+span.intable:hover {
+    color: #ffd1de;
+}
+
+tr:hover span.intable {
+    color: #ffd1de;
+}
+
+a {
+    color: #ffd1de;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a.intable {
+    color: white;
+    -webkit-transition: color 0s ease-in, background 0s ease-in;
+    -moz-transition: color 0s ease-in, background 0s ease-in;
+    -ms-transition: color 0s ease-in, background 0s ease-in;
+    -o-transition: color 0s ease-in, background 0s ease-in;
+    transition: color 0s ease-in, background 0s ease-in;
+}
+
+a.intable:hover {
+    color: #ffd1de;
+}
+
+tr:hover a.intable { 
+    color: #ffd1de;
+}
+
+a:hover,
+a:focus {
+    color: #7b7b7b;
+    text-decoration: underline;
+    outline: 0;
+}
+
+a:before,
+a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.navbar-default {
+	background-color: #041530;
+	border-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+	color: #ffd1de;
+    font-size: 200%
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #ffd1de;
+}
+
+/* Helpers */
+
+.mt {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.form-control {
+	height: 42px;
+	font-size: 18px;
+	width: 280px;
+}
+
+i {
+	margin: 8px;
+	color: #ffd1de; 
+}
+
+/* HeaderWrap */
+#headerwrap {
+	background-color: #ffd1de;
+	margin-top: -20px;
+	padding-top: 200px;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 680px;
+	width: 100%;
+	
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#headerwrap h1 {
+	margin-top: 60px;
+	margin-bottom: 15px;
+	color: white;
+	font-size: 45px;
+	font-weight: 300;
+	letter-spacing: 1px;
+}
+
+.table-bordered {
+  border: 5px solid white;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 5px solid white;
+}
+
+.table-hover > tbody > tr:hover > td >,
+.table-hover > tbody > tr:hover > th {
+  background-color: white;
+  color: #ffd1de;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border-top: 5px solid white;
+}
+
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 5px solid white;
+}
+
+.table > tbody + tbody {
+  border-top: 5px solid white;
+}
+
+.table .table {
+  background-color: white;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 5px;
+}
+
+.table-bordered {
+  border: 5px solid white;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 5px solid white;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 5px;
+  background-color: white;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: white;
+  color: #ffd1de;
+}
+
+.table > thead > tr > .active,
+.table > tbody > tr > .active,
+.table > tfoot > tr > .active,
+.table > thead > .active > td,
+.table > tbody > .active > td,
+.table > tfoot > .active > td,
+.table > thead > .active > th,
+.table > tbody > .active > th,
+.table > tfoot > .active > th {
+  background-color: white;
+  color: #ffd1de;
+
+}
+
+.table-hover > tbody > tr > .active:hover,
+.table-hover > tbody > .active:hover > td,
+.table-hover > tbody > .active:hover > th {
+  background-color: white;
+}
+
+.hiddenRow {
+    padding: 0 !important;
+    color: white;
+}
+
+.collapsing{
+    -webkit-transition:height .01s ease;
+    transition:height .01s ease
+}
+
+.acidjs-rating-stars,
+.acidjs-rating-stars label::before
+{
+    display: inline-block;
+}
+ 
+.acidjs-rating-stars label:hover,
+.acidjs-rating-stars label:hover ~ label
+{
+    color: #f5b301;
+}
+ 
+.acidjs-rating-stars *
+{
+    margin: 0;
+    padding: 0;
+}
+ 
+.acidjs-rating-stars input
+{
+    display: none;
+}
+ 
+.acidjs-rating-stars
+{
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+ 
+.acidjs-rating-stars label
+{
+    color: #ccc;
+}
+ 
+.acidjs-rating-stars label::before
+{
+    content: "\2605";
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+ 
+.acidjs-rating-stars input:checked ~ label
+{
+    color: #f5b301;
+}
+
+.popover {
+    max-height: 300px;
+    min-height: 150px; 
+    max-width: 325px; 
+    min-width: 325px; 
+    !important; overflow: scroll;
+}
+
